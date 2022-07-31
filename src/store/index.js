@@ -28,11 +28,3 @@ export default createStore({
   modules: {
   }
 })
-
-//  Store 定義
-// const store = new Vuex.Store({
-//   state: {
-//     count1: 0,
-//     count2: 0
-//   },
-// });
