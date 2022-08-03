@@ -8,7 +8,7 @@
   <div v-for="(text, index) in texts" :key="text">
 
     <!-- 各入力ボックス -->
-    <input name="detail_name" type="text" :id="'billing_address2_' + index" placeholder="項目" value="" class="span5">
+    <input name="detail_name" type="text" :id="'detail_name_' + index" placeholder="項目" value="" class="span5">
     <input name="quantity" type="text" :id="'quantity_' + index" placeholder="数量" @input="funcSum(index)" class="span1">
     <input name="unit" type="text" :id="'unit_' + index" placeholder="単位" value="" class="span1">
     <input name="unit_price" type="text" :id="'unit_price_' + index" placeholder="単価" @input="funcSum(index)" value="" class="span2">
@@ -19,6 +19,7 @@
   </div>
   <button type="button" @click="addInput">追加する</button>
   <br><br>
+  <div>合計：{{ sum.toLocaleString() }}円</div>
   <button type="button" @click="onSubmit">送信する</button>
   <FooterView/>
 </template>
@@ -39,29 +40,55 @@ export default {
   data() {
     return {
       texts: [], // 複数入力のデータ（配列）
-      total_price: 0, // 合計金額
+      sum: 0, // 合計金額
     }
   },
   methods: {
     funcSum (index) {
-      var quantity = document.getElementById('quantity_' + index).value
-      console.log('quantity', quantity)
-      if (!quantity) return
-      var unit_price = document.getElementById('unit_price_' + index).value
-      console.log('unit_price', unit_price)
-      if (!unit_price) return
-      document.getElementById('total_price_' + index).value = quantity * unit_price
+      this.texts[index].quantity = document.getElementById('quantity_' + index).value
+      this.texts[index].unit = document.getElementById('unit_' + index).value
+      this.texts[index].detail_name = document.getElementById('detail_name_' + index).value
+
+      // console.log('quantity', this.texts[index].quantity)
+      if (!this.texts[index].quantity) return
+      this.texts[index].unit_price = document.getElementById('unit_price_' + index).value
+      // console.log('unit_price', unit_price)
+      if (!this.texts[index].unit_price) return
+      this.texts[index].total_price = this.texts[index].quantity * this.texts[index].unit_price
+      document.getElementById('total_price_' + index).value = this.texts[index].total_price
+      console.log('funcSum', this.texts)
+      this.subtotal()
     },
     // ボタンをクリックしたときのイベント ③
     removeInput(index) {
 
       this.texts.splice(index, 1);
+      console.log('removeInput', this.texts)
 
     },
     addInput() {
+    // <input name="detail_name" type="text" :id="'billing_address2_' + index" placeholder="項目" value="" class="span5">
+    // <input name="quantity" type="text" :id="'quantity_' + index" placeholder="数量" @input="funcSum(index)" class="span1">
+    // <input name="unit" type="text" :id="'unit_' + index" placeholder="単位" value="" class="span1">
+    // <input name="unit_price" type="text" :id="'unit_price_' + index" placeholder="単価" @input="funcSum(index)" value="" class="span2">
+    // <input name="total_price" type="text" :id="'total_price_' + index" placeholder="合計" value="" class="span2">
 
-      this.texts.push('');
+      this.texts.push({
+        detail_name: '',
+        quantity: 0,
+        unit: '',
+        unit_price: 0,
+        total_price: 0
+      });
+      console.log('addInput', this.texts)
 
+    },
+    subtotal() {
+      this.sum = 0;
+      for (let i = 0; i < this.texts.length; i++) {
+        this.sum += this.texts[i].total_price;
+      }
+      console.log('isSubtotal', this.sum)
     },
     onSubmit() {
 
