@@ -67,11 +67,6 @@ export default {
 
     },
     addInput() {
-    // <input name="detail_name" type="text" :id="'billing_address2_' + index" placeholder="項目" value="" class="span5">
-    // <input name="quantity" type="text" :id="'quantity_' + index" placeholder="数量" @input="funcSum(index)" class="span1">
-    // <input name="unit" type="text" :id="'unit_' + index" placeholder="単位" value="" class="span1">
-    // <input name="unit_price" type="text" :id="'unit_price_' + index" placeholder="単価" @input="funcSum(index)" value="" class="span2">
-    // <input name="total_price" type="text" :id="'total_price_' + index" placeholder="合計" value="" class="span2">
 
       this.texts.push({
         detail_name: '',
