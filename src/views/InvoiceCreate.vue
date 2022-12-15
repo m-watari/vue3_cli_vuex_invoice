@@ -57,8 +57,6 @@ export default {
       this.texts[index].total_price = this.texts[index].quantity * this.texts[index].unit_price
       document.getElementById('total_price_' + index).value = this.texts[index].total_price
       console.log('funcSum', this.texts)
-      // this.textsをlocalstrageに保存する
-      localStorage.setItem('texts', JSON.stringify(this.texts))
       this.subtotal()
     },
     // ボタンをクリックしたときのイベント ③
