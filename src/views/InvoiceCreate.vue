@@ -17,9 +17,9 @@
     <!-- 入力ボックスの削除ボタン -->
     <button type="button" @click="removeInput(index)">削除</button>
   </div>
-  <button type="button" @click="addInput">追加する</button>
+  <button type="button" @click="addInput">入力等生成</button>
   <br><br>
-  <div>合計：{{ sum.toLocaleString() }}円</div>
+  <div>小計：{{ sum.toLocaleString() }}円</div>
   <button type="button" @click="onSubmit">送信する</button>
   <FooterView/>
 </template>
@@ -57,14 +57,15 @@ export default {
       this.texts[index].total_price = this.texts[index].quantity * this.texts[index].unit_price
       document.getElementById('total_price_' + index).value = this.texts[index].total_price
       console.log('funcSum', this.texts)
+      // this.textsをlocalstrageに保存する
+      localStorage.setItem('texts', JSON.stringify(this.texts))
       this.subtotal()
     },
     // ボタンをクリックしたときのイベント ③
     removeInput(index) {
-
       this.texts.splice(index, 1);
       console.log('removeInput', this.texts)
-
+      this.subtotal()
     },
     addInput() {
 
@@ -109,6 +110,10 @@ export default {
   },
   mounted () {
     console.log('texts' , this.texts);
+    // ブラウザから別のページに移動前にalertを表示する
+    window.onbeforeunload = function () {
+      return '入力した内容は保存されません。';
+    };
   }
 }
 </script>
