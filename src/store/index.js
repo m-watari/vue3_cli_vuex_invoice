@@ -14,6 +14,10 @@ export default createStore({
         url: '/about'
       },
       {
+        name: 'Invoice',
+        url: '/invoice'
+      },
+      {
         name: 'Contact',
         url: '/contact'
       }

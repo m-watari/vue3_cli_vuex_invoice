@@ -87,6 +87,25 @@ export default {
     onSubmit() {
 
       console.log(this.texts);
+      // ./asseets/data.jsonにthis.textsを保存する
+      // const url = './asseets/data.json';
+      // const params = {
+      //     texts: this.texts
+      // };
+      // axios.post(url, params)
+      //     .then(response => {
+
+
+    // store this.texts in ./assets/data.json
+    // const url = './assets/data.json';
+    // const params = {
+    //     texts: this.texts
+    // };
+    // axios.post(url, params)
+    //     .then(response => {
+      
+
+
 
       // const url = '/multiple_inputs';
       // const params = {
@@ -107,7 +126,6 @@ export default {
     }
   },
   mounted () {
-    console.log('texts' , this.texts);
     // ブラウザから別のページに移動前にalertを表示する
     window.onbeforeunload = function () {
       return '入力した内容は保存されません。';

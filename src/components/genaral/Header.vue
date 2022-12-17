@@ -4,7 +4,7 @@
       <nav>
           <!-- <li class="head">{{ item.name }}</li> -->
           <span v-for="item in menu" :key="item.name">
-            <router-link to="/">{{ item.name }}</router-link> |
+            <router-link :to="item.url">{{ item.name }}</router-link> |
           </span>
       </nav>
 
