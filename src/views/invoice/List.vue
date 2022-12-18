@@ -17,20 +17,18 @@ import FooterView from '@/components/genaral/Footer.vue'
 export default {
   name: 'Invoice_list',
   components: {
-    // HelloWorld,
     HeaderView,
     FooterView
   },
   // data() {
   //   return {
-  //     texts: [], // 複数入力のデータ（配列）
-  //     sum: 0, // 合計金額
   //   }
   // },
   // methods: {
     
   // },
-  // mounted () {
-  // }
+  mounted () {
+    console.log('NODE_ENV', process.env.NODE_ENV)
+  }
 }
 </script>

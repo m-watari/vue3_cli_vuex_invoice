@@ -3,7 +3,7 @@
   <div class="invoiceCreate">
     <h1>This invoiceCreat page</h1>
   </div>
-  <!-- 入力ボックスを表示する場所 ① -->
+  <!-- 入力ボックスを表示する -->
 
   <div v-for="(text, index) in texts" :key="text">
 
@@ -17,7 +17,7 @@
     <!-- 入力ボックスの削除ボタン -->
     <button type="button" @click="removeInput(index)">削除</button>
   </div>
-  <button type="button" @click="addInput">入力等生成</button>
+  <button type="button" @click="addInput">入力フォーム追加</button>
   <br><br>
   <div>小計：{{ sum.toLocaleString() }}円</div>
   <button type="button" @click="onSubmit">送信する</button>
@@ -87,45 +87,12 @@ export default {
     onSubmit() {
 
       console.log(this.texts);
-      // ./asseets/data.jsonにthis.textsを保存する
-      // const url = './asseets/data.json';
-      // const params = {
-      //     texts: this.texts
-      // };
-      // axios.post(url, params)
-      //     .then(response => {
-
-
-    // store this.texts in ./assets/data.json
-    // const url = './assets/data.json';
-    // const params = {
-    //     texts: this.texts
-    // };
-    // axios.post(url, params)
-    //     .then(response => {
-      
-
-
-
-      // const url = '/multiple_inputs';
-      // const params = {
-      //     texts: this.texts
-      // };
-      // axios.post(url, params)
-      //     .then(response => {
-
-      //         // 成功した時
-
-      //     })
-      //     .catch(error => {
-
-      //         // 失敗した時
-
-      //     });
 
     }
   },
   mounted () {
+    // ページ読み込み時に入力ボックスを1つ表示する
+    this.addInput()
     // ブラウザから別のページに移動前にalertを表示する
     window.onbeforeunload = function () {
       return '入力した内容は保存されません。';
