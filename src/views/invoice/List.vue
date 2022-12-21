@@ -3,6 +3,7 @@
   <div class="invoice">
     <h1>This invoiceList page</h1>
     <div>
+      <div>ユーザー名：{{ user.name }}</div>
       <router-link to="/invoice-create">create</router-link>
     </div>
   <div>
@@ -43,8 +44,8 @@ export default {
     }
 
   },
-  mounted () {
-    console.log('NODE_ENV', process.env.NODE_ENV)
+  created() {
+    this.user = this.$store.state.user
   }
 }
 </script>
