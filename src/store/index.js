@@ -26,8 +26,19 @@ export default createStore({
   getters: {
   },
   mutations: {
+    // ユーザ情報
+    user: (state, data) => (state.user = data),
   },
   actions: {
+    /**
+     * ユーザ情報を追加
+     *
+     * @param commit mutationを呼ぶ
+     * @param data ユーザのJSON
+     */
+    setUserData: ({ commit }, data) => {
+      commit('user', data)
+    },
   },
   modules: {
   }
