@@ -9,7 +9,7 @@
   <div>
     <!-- invice_listをループ表示 -->
     <div v-for="invoice in invoice_list" :key="invoice.id">
-      <router-link :to="'/invoice-detail/' + invoice.id">{{ invoice.title }}</router-link>
+      <router-link :to="'/invoice-detail/' + invoice.id">{{ invoice.name }}&nbsp;{{ invoice.amount.toLocaleString() }}円</router-link>
     </div>
   </div>
   </div>
@@ -32,20 +32,16 @@ export default {
     }
   },
   methods: {
-    // invoiceをDBから取得
-    getInvoiceList() {
-      this.$axios.get('/api/invoice')
-        .then((response) => {
-          this.invoice_list = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    async getInvoiceList() {
+      const response = await fetch('http://localhost:8888/invoices.php')
+      const data = await response.json()
+      this.invoice_list = data
     }
 
   },
-  created() {
+  async created() {
     this.user = this.$store.state.user
+    await this.getInvoiceList()
   }
 }
 </script>
