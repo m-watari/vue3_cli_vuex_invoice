@@ -9,7 +9,7 @@
   <div>
     <!-- invice_listをループ表示 -->
     <div v-for="invoice in invoice_list" :key="invoice.id">
-      <router-link :to="'/invoice-detail/' + invoice.id">{{ invoice.name }}&nbsp;{{ invoice.amount.toLocaleString() }}円</router-link>
+      <router-link :to="'/invoice-detail/' + invoice.id">{{ invoice.id }}</router-link>&nbsp;{{ invoice.name }}&nbsp;{{ invoice.amount.toLocaleString() }}円
     </div>
   </div>
   </div>
@@ -33,11 +33,10 @@ export default {
   },
   methods: {
     async getInvoiceList() {
-      const response = await fetch('http://localhost:8888/invoices.php')
+      const response = await fetch(process.env.VUE_APP_API_URL + '/invoices.php')
       const data = await response.json()
       this.invoice_list = data
     }
-
   },
   async created() {
     this.user = this.$store.state.user

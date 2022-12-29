@@ -20,11 +20,12 @@ const routes = [
     name: 'invoice',
     component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/List.vue')
   },
+// http://localhost:8080/invoice/detail/932でアクセス
   {
-    path: '/invoice-create',
-    name: 'invoiceCreate',
-    component: () => import(/* webpackChunkName: "invoiceCreate" */ '../views/invoice/Create.vue')
-  }
+    path: '/invoice/detail/:id',
+    name: 'invoice-detail',
+    component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/Detail.vue')
+  },
 ]
 
 const router = createRouter({
