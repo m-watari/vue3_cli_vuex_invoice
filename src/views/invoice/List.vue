@@ -9,7 +9,11 @@
   <div>
     <!-- invice_listをループ表示 -->
     <div v-for="invoice in invoice_list" :key="invoice.id">
-      <router-link :to="'/invoice-detail/' + invoice.id">{{ invoice.id }}</router-link>&nbsp;{{ invoice.name }}&nbsp;{{ invoice.amount.toLocaleString() }}円
+      <router-link :to="'/invoice/detail/' + invoice.id">{{ invoice.id }}</router-link>
+      &nbsp;
+      {{ invoice.name }}&nbsp;{{ invoice.amount.toLocaleString() }}円
+      &nbsp;
+      <router-link :to="'/invoice/edit/' + invoice.id">edit</router-link>
     </div>
   </div>
   </div>
