@@ -2,10 +2,6 @@
   <HeaderView/>
   <div class="invoice">
     <h1>This invoiceDetail page</h1>
-    <div>
-      <div>ユーザー名：{{ user.name }}</div>
-      <router-link to="/invoice-create">create</router-link>
-    </div>
   </div>
   <div>
     <!-- invice_listをループ表示 -->
@@ -19,11 +15,11 @@
       <span>ｘ{{ invoice_detail.quantity }}{{ invoice_detail.unit }}</span>
       <span>={{ Number(invoice_detail.quantity * invoice_detail.unit_price).toLocaleString() }}円</span>
     </div>
-    <button type="button" class="btn btn-primary">Primary</button>
 
     <div>小計：{{ Number(invoice.subtotal).toLocaleString() }}</div>
     <div>消費税：{{ Number(invoice.tax).toLocaleString() }}</div>
     <div>合計：{{ Number(invoice.billing_amount).toLocaleString() }}</div>
+    <button type="button" class="btn btn-primary" @click="onSend">send</button>
   </div>
   <FooterView/>
 </template>
@@ -53,11 +49,31 @@ export default {
       const data = await response.json()
       this.invoice = data
     },
-    // http://localhost:8888/invoice_details.php?id=221218094928を取得
     async getInvoiceDetail() {
       const response = await fetch(process.env.VUE_APP_API_URL + '/invoice_details.php?id=' + this.invoice.estimates_id)
       const data = await response.json()
       this.invoice_detail = data
+    },
+    onSend() {
+      console.log('onSend')
+      console.log('billing_name', this.invoice.billing_name)
+      console.log('billing_zip', this.invoice.billing_zip)
+      console.log('invoice.billing_address', this.invoice.billing_address)
+
+      // 送信データを作成
+      const data = {
+        id: this.invoice.id,
+        billing_name: this.invoice.billing_name,
+        billing_zip: this.invoice.billing_zip,
+        billing_address: this.invoice.billing_address,
+      }
+      fetch(process.env.VUE_APP_API_URL + '/invoice_update.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
     }
 
 
