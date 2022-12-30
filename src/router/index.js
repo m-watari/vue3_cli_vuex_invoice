@@ -20,11 +20,15 @@ const routes = [
     name: 'invoice',
     component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/List.vue')
   },
-// http://localhost:8080/invoice/detail/932でアクセス
   {
     path: '/invoice/detail/:id',
     name: 'invoice-detail',
     component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/Detail.vue')
+  },
+  {
+    path: '/invoice/edit/:id',
+    name: 'invoice-edit',
+    component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/Edit.vue')
   },
 ]
 
