@@ -4,7 +4,7 @@
     <h1>This invoiceList page</h1>
     <div>
       <div>ユーザー名：{{ user.name }}</div>
-      <router-link to="/invoice-create">create</router-link>
+      <router-link to="/invoice/create">create</router-link>
     </div>
   <div>
     <!-- invice_listをループ表示 -->

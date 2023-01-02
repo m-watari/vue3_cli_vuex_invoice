@@ -21,6 +21,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/List.vue')
   },
   {
+    path: '/invoice/create',
+    name: 'invoice-create',
+    component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/Create.vue')
+  },
+  {
     path: '/invoice/detail/:id',
     name: 'invoice-detail',
     component: () => import(/* webpackChunkName: "invoice" */ '../views/invoice/Detail.vue')

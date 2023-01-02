@@ -55,11 +55,6 @@ export default {
       this.invoice_detail = data
     },
     onSend() {
-      console.log('onSend')
-      console.log('billing_name', this.invoice.billing_name)
-      console.log('billing_zip', this.invoice.billing_zip)
-      console.log('invoice.billing_address', this.invoice.billing_address)
-
       // 送信データを作成
       const data = {
         id: this.invoice.id,
@@ -81,10 +76,7 @@ export default {
   async created() {
     this.user = this.$store.state.user
     await this.getInvoice()
-    console.log('this.invoice', this.invoice)
     await this.getInvoiceDetail()
-    console.log('this.invoice_detail', this.invoice_detail)
-    console.log('jquery Ver:', global.$.fn.jquery)
   }
 }
 </script>
