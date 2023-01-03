@@ -1,18 +1,15 @@
 import { createApp } from 'vue'
 import store from '@/store'
-import axios from 'axios'
-// $storeを使うために必要
 createApp(store)
 
 /**
  * get user
  */
 const loadUserData = async () => {
-  // http://localhost:8888/user.phpからユーザー情報を取得する
-  const response = await axios.get(process.env.VUE_APP_API_URL + '/user.php')
-  console.log(response.data)
+  const response = await fetch(process.env.VUE_APP_API_URL + '/user.php')
+  const data = await response.json()
   // ユーザー情報をVuexに保存する
-  store.dispatch('setUserData', response.data)
+  store.dispatch('setUserData', data)
 }
 
 export default async () => {
